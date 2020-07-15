@@ -147,20 +147,11 @@ namespace TestClient
 				    Temperature = random.Next(-20, 55),
                     TemperatureSystem = "C"
                 };
-				var reading2 = new WeatherReading()
-                {
-                    Id = Guid.NewGuid(),
-				    ForecastId = weatherForecast.Id,
-                    Temperature = 32 + (int)(reading1.Temperature / 0.5556),
-                    TemperatureSystem = "F"
-                };
 
 				weatherForecast.Readings.Add(reading1);
-				weatherForecast.Readings.Add(reading2);
 
 				_odataContext.AddToWeatherForecasts(weatherForecast);
                 _odataContext.AddRelatedObject(weatherForecast, nameof(WeatherForecast.Readings), reading1);
-				_odataContext.AddRelatedObject(weatherForecast, nameof(WeatherForecast.Readings), reading2);
 
                 _odataContext.SaveChanges(SaveChangesOptions.BatchWithSingleChangeset);
 
