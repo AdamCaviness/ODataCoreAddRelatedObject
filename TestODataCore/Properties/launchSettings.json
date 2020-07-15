@@ -8,7 +8,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://achomemachine:18316"
+      "applicationUrl": "http://localhost:18316"
     }
   }
 }

@@ -18,7 +18,7 @@ namespace TestClient
         static void Main(string[] args)
         {
             // set the odata context
-            _odataContext = new Container(new Uri("http://achomemachine:18316/odata/"));
+            _odataContext = new Container(new Uri("http://localhost:18316/odata/"));
 
             bool showMenu = true;
             while (showMenu)
