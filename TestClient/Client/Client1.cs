@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 7/14/2020 4:53:42 PM
+// Generation date: 7/15/2020 12:12:07 PM
 namespace TestODataCore
 {
     /// <summary>
@@ -132,7 +132,7 @@ namespace TestODataCore
           <PropertyRef Name=""Id"" />
         </Key>
         <Property Name=""Id"" Type=""Edm.Guid"" Nullable=""false"" />
-        <Property Name=""ForecastId"" Type=""Edm.Int32"" Nullable=""false"" />
+        <Property Name=""ForecastId"" Type=""Edm.Guid"" Nullable=""false"" />
         <Property Name=""Temperature"" Type=""Edm.Int32"" Nullable=""false"" />
         <Property Name=""TemperatureSystem"" Type=""Edm.String"" />
         <NavigationProperty Name=""Forecast"" Type=""TestODataCore.WeatherForecast"" />
@@ -423,7 +423,7 @@ namespace TestODataCore
         /// <param name="forecastId">Initial value of ForecastId.</param>
         /// <param name="temperature">Initial value of Temperature.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "7.5.1")]
-        public static WeatherReading CreateWeatherReading(global::System.Guid ID, int forecastId, int temperature)
+        public static WeatherReading CreateWeatherReading(global::System.Guid ID, global::System.Guid forecastId, int temperature)
         {
             WeatherReading weatherReading = new WeatherReading();
             weatherReading.Id = ID;
@@ -457,7 +457,7 @@ namespace TestODataCore
         /// There are no comments for Property ForecastId in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "7.5.1")]
-        public int ForecastId
+        public global::System.Guid ForecastId
         {
             get
             {
@@ -472,8 +472,8 @@ namespace TestODataCore
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "7.5.1")]
-        private int _ForecastId;
-        partial void OnForecastIdChanging(int value);
+        private global::System.Guid _ForecastId;
+        partial void OnForecastIdChanging(global::System.Guid value);
         partial void OnForecastIdChanged();
         /// <summary>
         /// There are no comments for Property Temperature in the schema.

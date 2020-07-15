@@ -143,12 +143,14 @@ namespace TestClient
                 var reading1 = new WeatherReading()
                 {
                     Id = Guid.NewGuid(),
-                    Temperature = random.Next(-20, 55),
+                    ForecastId = weatherForecast.Id,
+				    Temperature = random.Next(-20, 55),
                     TemperatureSystem = "C"
                 };
 				var reading2 = new WeatherReading()
                 {
                     Id = Guid.NewGuid(),
+				    ForecastId = weatherForecast.Id,
                     Temperature = 32 + (int)(reading1.Temperature / 0.5556),
                     TemperatureSystem = "F"
                 };

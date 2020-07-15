@@ -6,7 +6,7 @@ namespace TestODataCore.Models
 	{
 		public Guid Id { get; set; }
 
-		public int ForecastId { get; set; }
+		public Guid ForecastId { get; set; }
 
 		public int Temperature { get; set; }
 		public string TemperatureSystem { get; set; }
