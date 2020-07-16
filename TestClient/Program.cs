@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.OData.Client;
-//using Default;
-//using TestODataCore.Models;
 using TestODataCore;
 
 namespace TestClient
 {
     class Program
     {
-        // TODO: Find out why this is in "DEFAULT" NameSpace
         private static Container _odataContext;
 
         static void Main(string[] args)

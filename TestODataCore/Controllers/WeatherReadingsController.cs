@@ -48,6 +48,19 @@ namespace TestODataCore.Controllers
 
             return Created(WeatherReading);
         }
+        public async Task<IActionResult> PostFromRelatedEntity(WeatherReading WeatherReading)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _dbContext.WeatherReadings.Add(WeatherReading);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Created(WeatherReading);
+        }
         public async Task<IActionResult> Patch([FromODataUri] Guid key, Delta<WeatherReading> weatherReading)
         {
             if (!ModelState.IsValid)

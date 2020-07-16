@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.OData.Batch;
 using Microsoft.AspNet.OData.Builder;
@@ -58,17 +59,22 @@ namespace TestODataCore
             //});
 
             // Older non-endpoint routing.
+            var routeName = "odata";
+            var routePrefix = "odata";
+            var pathHandler = new DefaultODataPathHandler();
+            var batchHandler = new DefaultODataBatchHandler();
+            var routingConventions = GetRoutingConventions(app.ApplicationServices, routeName);
             app.UseMvc(routeBuilder =>
             {
                 routeBuilder.EnableDependencyInjection();
                 routeBuilder.Count().Filter().OrderBy().Expand().Select().MaxTop(null);
                 routeBuilder.MapODataServiceRoute(
-                    routeName: "odata",
-                    routePrefix: "odata",
+                    routeName: routeName,
+                    routePrefix: routePrefix,
                     model: GetEdmModel(),
-                    pathHandler: new DefaultODataPathHandler(),
-                    routingConventions: ODataRoutingConventions.CreateDefault(),
-                    batchHandler: new DefaultODataBatchHandler());
+                    pathHandler: pathHandler,
+                    routingConventions: routingConventions,
+                    batchHandler: batchHandler);
             });
         }
 
@@ -82,6 +88,17 @@ namespace TestODataCore
 			odataBuilder.EntitySet<WeatherReading>("WeatherReadings");
 
 			return odataBuilder.GetEdmModel();
+        }
+        private static List<IODataRoutingConvention> GetRoutingConventions(IServiceProvider serviceProvider, string routeName)
+        {
+            var routingConventions = new List<IODataRoutingConvention>();
+            routingConventions.Add(new RelatedEntityRoutingConvention());
+
+            // Workaround for https://github.com/OData/WebApi/issues/1622. Ideally we would call ODataRoutingConventions.CreateDefaultWithAttributeRouting.
+            routingConventions.Add(new AttributeRoutingConvention(routeName, serviceProvider, new DefaultODataPathHandler()));
+            routingConventions.AddRange(ODataRoutingConventions.CreateDefault());
+
+            return routingConventions;
         }
     }
 }
