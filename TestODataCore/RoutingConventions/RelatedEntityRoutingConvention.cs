@@ -32,10 +32,9 @@ namespace TestODataCore
 			{
 				var controllerName = string.Empty;
 
-				var parts = odataPath.ToString().Split('/');
-				var lastSegment = parts.Last();
-				if (lastSegment == "Readings")
-					controllerName = "WeatherReadings";
+				var segment = odataPath.Segments[odataPath.Segments.Count - 1] as Parser.NavigationPropertySegment;
+				if (segment != null)
+					controllerName = segment.NavigationSource.Name;
 
 				var actionName = request.Method;
 
